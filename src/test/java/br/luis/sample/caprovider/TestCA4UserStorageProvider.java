@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package br.com.transpetro.caprovider;
+package br.luis.sample.caprovider;
 
 import org.junit.Assert;
 import org.junit.Rule;
@@ -30,7 +30,7 @@ import org.mockito.Mockito;
 
 import java.util.*;
 
-import static br.com.transpetro.caprovider.CA4UserStorageProviderFactory.*;
+import static br.luis.sample.caprovider.CA4UserStorageProviderFactory.*;
 import static org.mockito.Mockito.verify;
 
 

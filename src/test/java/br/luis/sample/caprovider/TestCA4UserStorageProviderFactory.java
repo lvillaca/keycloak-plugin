@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package br.com.transpetro.caprovider;
+package br.luis.sample.caprovider;
 
 import org.junit.Assert;
 import org.junit.Rule;
