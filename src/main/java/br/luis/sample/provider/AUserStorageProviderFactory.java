@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package br.luis.sample.caprovider;
+package br.luis.sample.provider;
 
 import org.apache.log4j.Logger;
 import org.keycloak.Config;
@@ -32,9 +32,9 @@ import java.util.*;
  * @author Luis Villaca
  * @version $Revision: 1 $
  */
-public class CA4UserStorageProviderFactory implements UserStorageProviderFactory<CA4UserStorageProvider> {
-    private static Logger classLogger = Logger.getLogger(CA4UserStorageProviderFactory.class);
-    public static final String PROVIDER_NAME = "CA4SSOProvider";
+public class AUserStorageProviderFactory implements UserStorageProviderFactory<AUserStorageProvider> {
+    private static Logger classLogger = Logger.getLogger(AUserStorageProviderFactory.class);
+    public static final String PROVIDER_NAME = "AnSSOProvider";
     
 
     protected ComponentModel currentModel;
@@ -86,14 +86,14 @@ public class CA4UserStorageProviderFactory implements UserStorageProviderFactory
 
 
     @Override
-    public CA4UserStorageProvider create(KeycloakSession session, ComponentModel model) {
+    public AUserStorageProvider create(KeycloakSession session, ComponentModel model) {
         //retrieve and pass on console information
 
         Properties properties = new Properties();
         properties.setProperty(PARAM_2,model.getConfig().getFirst(PARAM_2));
         properties.setProperty(PARAM_1,model.getConfig().getFirst(PARAM_1));
 
-        return new CA4UserStorageProvider(session, model, properties);
+        return new AUserStorageProvider(session, model, properties);
     }
 
 }

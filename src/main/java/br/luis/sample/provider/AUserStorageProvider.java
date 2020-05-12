@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package br.luis.sample.caprovider;
+package br.luis.sample.provider;
 
 
 import org.apache.log4j.Logger;
@@ -39,19 +39,19 @@ import java.util.*;
  * @author Luis Villaca
  * @version $Revision: 1 $
  */
-public class CA4UserStorageProvider implements
+public class AUserStorageProvider implements
         UserStorageProvider,
         UserLookupProvider,
         CredentialInputValidator
 {
-    private static Logger classLogger = Logger.getLogger(CA4UserStorageProvider.class);
+    private static Logger classLogger = Logger.getLogger(AUserStorageProvider.class);
     protected KeycloakSession session;
     protected ComponentModel model;
     protected Properties properties;
     // map of loaded users in this transaction
     protected Map<String, UserModel> loadedUsers = new HashMap<>();
 
-    public CA4UserStorageProvider(KeycloakSession session, ComponentModel model, Properties properties) {
+    public AUserStorageProvider(KeycloakSession session, ComponentModel model, Properties properties) {
         this.session = session;
         this.model = model;
         this.properties = properties;
