@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package br.luis.sample.caprovider;
+package br.luis.sample.provider;
 
 import org.junit.Assert;
 import org.junit.Rule;
@@ -37,7 +37,7 @@ import static org.hamcrest.core.StringStartsWith.startsWith;
  * @author Luis Villaca
  * @version $Revision: 1 $
  */
-public class TestCA4UserStorageProviderFactory {
+public class TestAUserStorageProviderFactory {
 
     public static final String PARAM_2 = "PARAM_2";
     public static final String USER = "USER";
@@ -47,12 +47,12 @@ public class TestCA4UserStorageProviderFactory {
 
     @Test
     public void testStatic() {
-        CA4UserStorageProviderFactory testCA4UserStorageProviderFactory = new CA4UserStorageProviderFactory();
-        Assert.assertEquals(PARAM_2,testCA4UserStorageProviderFactory.configMetadata.get(1).getLabel());
-        Assert.assertEquals(testCA4UserStorageProviderFactory.configMetadata,testCA4UserStorageProviderFactory.getConfigProperties());
-        Assert.assertEquals(testCA4UserStorageProviderFactory.PROVIDER_NAME,testCA4UserStorageProviderFactory.getId());
+        AUserStorageProviderFactory testAUserStorageProviderFactory = new AUserStorageProviderFactory();
+        Assert.assertEquals(PARAM_2,testAUserStorageProviderFactory.configMetadata.get(1).getLabel());
+        Assert.assertEquals(testAUserStorageProviderFactory.configMetadata,testAUserStorageProviderFactory.getConfigProperties());
+        Assert.assertEquals(testAUserStorageProviderFactory.PROVIDER_NAME,testAUserStorageProviderFactory.getId());
         try {
-            testCA4UserStorageProviderFactory.init(null);
+            testAUserStorageProviderFactory.init(null);
         } catch (Exception e) {
             Assert.fail("exception on null config");
         }
@@ -69,9 +69,9 @@ public class TestCA4UserStorageProviderFactory {
         Mockito.when(multivaluedHashMap.getFirst(Mockito.anyString())).thenReturn("");
         Mockito.when(model.getConfig()).thenReturn(multivaluedHashMap);
 
-        CA4UserStorageProviderFactory testCA4UserStorageProviderFactory = new CA4UserStorageProviderFactory();
+        AUserStorageProviderFactory testAUserStorageProviderFactory = new AUserStorageProviderFactory();
 
-        Assert.assertEquals(testCA4UserStorageProviderFactory.create(session,model).model,model);
+        Assert.assertEquals(testAUserStorageProviderFactory.create(session,model).model,model);
 
     }
 

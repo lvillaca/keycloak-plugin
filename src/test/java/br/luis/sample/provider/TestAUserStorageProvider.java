@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package br.luis.sample.caprovider;
+package br.luis.sample.provider;
 
 import org.junit.Assert;
 import org.junit.Rule;
@@ -30,7 +30,7 @@ import org.mockito.Mockito;
 
 import java.util.*;
 
-import static br.luis.sample.caprovider.CA4UserStorageProviderFactory.*;
+import static br.luis.sample.provider.AUserStorageProviderFactory.*;
 import static org.mockito.Mockito.verify;
 
 
@@ -38,7 +38,7 @@ import static org.mockito.Mockito.verify;
  * @author Luis Villaca
  * @version $Revision: 1 $
  */
-public class TestCA4UserStorageProvider
+public class TestAUserStorageProvider
 {
     @Rule
     public ExpectedException expectedEx = ExpectedException.none();
@@ -46,14 +46,14 @@ public class TestCA4UserStorageProvider
     public static final String USERNAME = "USERNAME";
 
     @Test
-    public void testInitCA4UserStorageProvider() {
+    public void testInitAUserStorageProvider() {
         KeycloakSession session = Mockito.mock(KeycloakSession.class);
         ComponentModel model =  Mockito.mock(ComponentModel.class);
         Properties props = Mockito.mock(Properties.class);
 
-        CA4UserStorageProvider testCA4UserStorageProvider = new CA4UserStorageProvider(session, model, props);
-        Assert.assertEquals(testCA4UserStorageProvider.model, model);
-        Assert.assertEquals(testCA4UserStorageProvider.session, session);
+        AUserStorageProvider testAUserStorageProvider = new AUserStorageProvider(session, model, props);
+        Assert.assertEquals(testAUserStorageProvider.model, model);
+        Assert.assertEquals(testAUserStorageProvider.session, session);
     }
 
 
@@ -65,12 +65,12 @@ public class TestCA4UserStorageProvider
         RealmModel realmModel = Mockito.mock(RealmModel.class);
         ComponentModel componentModel =  Mockito.mock(ComponentModel.class);
         Properties props = Mockito.mock(Properties.class);
-        CA4UserStorageProvider testCA4UserStorageProvider = new CA4UserStorageProvider(session, componentModel, props);
-        CA4UserStorageProviderFactory testCA4UserStorageProviderFactory = new CA4UserStorageProviderFactory();
-        testCA4UserStorageProviderFactory.init(null);
-        testCA4UserStorageProviderFactory.currentModel = getKeycloakModel();
+        AUserStorageProvider testAUserStorageProvider = new AUserStorageProvider(session, componentModel, props);
+        AUserStorageProviderFactory testAUserStorageProviderFactory = new AUserStorageProviderFactory();
+        testAUserStorageProviderFactory.init(null);
+        testAUserStorageProviderFactory.currentModel = getKeycloakModel();
 
-        Assert.assertEquals(USERNAME,testCA4UserStorageProvider.getUserByUsername(USERNAME,realmModel).getUsername());
+        Assert.assertEquals(USERNAME,testAUserStorageProvider.getUserByUsername(USERNAME,realmModel).getUsername());
     }
 
     @Test
@@ -80,12 +80,12 @@ public class TestCA4UserStorageProvider
         RealmModel realmModel = Mockito.mock(RealmModel.class);
         Properties props = Mockito.mock(Properties.class);
 
-        CA4UserStorageProvider testCA4UserStorageProvider = new CA4UserStorageProvider(session, model, props);
-        CA4UserStorageProviderFactory testCA4UserStorageProviderFactory = new CA4UserStorageProviderFactory();
-        testCA4UserStorageProviderFactory.init(null);
-        testCA4UserStorageProviderFactory.currentModel = getKeycloakModel();
+        AUserStorageProvider testAUserStorageProvider = new AUserStorageProvider(session, model, props);
+        AUserStorageProviderFactory testAUserStorageProviderFactory = new AUserStorageProviderFactory();
+        testAUserStorageProviderFactory.init(null);
+        testAUserStorageProviderFactory.currentModel = getKeycloakModel();
 
-        Assert.assertEquals(testCA4UserStorageProvider.getUserById(USERNAME+":"+USERNAME,realmModel).getUsername(),USERNAME+":"+USERNAME);
+        Assert.assertEquals(testAUserStorageProvider.getUserById(USERNAME+":"+USERNAME,realmModel).getUsername(),USERNAME+":"+USERNAME);
     }
 
     @Test
@@ -95,8 +95,8 @@ public class TestCA4UserStorageProvider
         RealmModel realmModel = Mockito.mock(RealmModel.class);
         Properties props = Mockito.mock(Properties.class);
 
-        CA4UserStorageProvider testCA4UserStorageProvider = new CA4UserStorageProvider(session, model, props);
-        Assert.assertNull(testCA4UserStorageProvider.getUserByEmail(USERNAME,realmModel));
+        AUserStorageProvider testAUserStorageProvider = new AUserStorageProvider(session, model, props);
+        Assert.assertNull(testAUserStorageProvider.getUserByEmail(USERNAME,realmModel));
     }
 
 
@@ -108,8 +108,8 @@ public class TestCA4UserStorageProvider
         RealmModel realmModel = Mockito.mock(RealmModel.class);
         Properties props = Mockito.mock(Properties.class);
 
-        CA4UserStorageProvider testCA4UserStorageProvider = new CA4UserStorageProvider(session, model, props);
-        Assert.assertTrue(testCA4UserStorageProvider.isConfiguredFor(realmModel, umodel, CredentialModel.PASSWORD));
+        AUserStorageProvider testAUserStorageProvider = new AUserStorageProvider(session, model, props);
+        Assert.assertTrue(testAUserStorageProvider.isConfiguredFor(realmModel, umodel, CredentialModel.PASSWORD));
     }
 
     @Test
@@ -118,8 +118,8 @@ public class TestCA4UserStorageProvider
         ComponentModel model =  Mockito.mock(ComponentModel.class);
         Properties props = Mockito.mock(Properties.class);
 
-        CA4UserStorageProvider testCA4UserStorageProvider = new CA4UserStorageProvider(session, model, props);
-        Assert.assertTrue(testCA4UserStorageProvider.supportsCredentialType(CredentialModel.PASSWORD));
+        AUserStorageProvider testAUserStorageProvider = new AUserStorageProvider(session, model, props);
+        Assert.assertTrue(testAUserStorageProvider.supportsCredentialType(CredentialModel.PASSWORD));
     }
 
     @Test
@@ -145,16 +145,16 @@ public class TestCA4UserStorageProvider
         Properties props = Mockito.mock(Properties.class);
         RealmModel realmModel = Mockito.mock(RealmModel.class);
 
-        CA4UserStorageProvider testCA4UserStorageProvider = new CA4UserStorageProvider(session, model, props);
+        AUserStorageProvider testAUserStorageProvider = new AUserStorageProvider(session, model, props);
 
-        Assert.assertEquals(true,testCA4UserStorageProvider.isValid(realmModel,umodel,input));
+        Assert.assertEquals(true,testAUserStorageProvider.isValid(realmModel,umodel,input));
     }
 
     @Test
     public void testClose() {
-        CA4UserStorageProvider testCA4UserStorageProvider = new CA4UserStorageProvider(null, null, null);
+        AUserStorageProvider testAUserStorageProvider = new AUserStorageProvider(null, null, null);
         try {
-            testCA4UserStorageProvider.close();
+            testAUserStorageProvider.close();
         } catch (Exception e) {
             Assert.fail("No exception should be raised");
         }
